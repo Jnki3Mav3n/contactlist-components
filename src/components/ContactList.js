@@ -8,7 +8,19 @@ const ContactList = props => {
         props.getContactId(id);
     };
 
-    const renderCList = props.contacts.map(contact => {
+    const contacts = [
+                {
+            id: "001",
+            name: "Manuel",
+            email: "manu.ar217@gmail.com"
+        },
+        {
+            id: "002",
+            name: "Nelly",
+            email: "nategaleano@gmail.com"
+        }
+    ]
+    const renderCList = contacts.map(contact => {
         return <ContactCard contact={contact} clickHandler={delContact} key={contact.id}></ContactCard>;
     })
 
