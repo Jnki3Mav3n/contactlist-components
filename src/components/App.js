@@ -5,6 +5,7 @@ import '../styles/App.css';
 import Header from './Header';
 import AddContact from './AddContact';
 import ContactList from './ContactList';
+import ContactData from './ContactData';
 
 function App() {
     const localStorageKey = "contacts";
@@ -48,8 +49,32 @@ function App() {
             <Router>
                 <Header />
                 <Switch>
-                    <Route path="/" component={() => <ContactList contacts={contacts} getContactId={remContactHandler}/>} exact />
-                    <Route path="/add" component={() => (<AddContact addContactHandler={addContactHandler} />)} />                    
+                    <Route 
+                        path="/" 
+                        exact 
+                        /*>component={() => <ContactList contacts={contacts} getContactId={remContactHandler}/>}*/ 
+                        render={(props) => (
+                            <ContactList {...props} 
+                            contacts={contacts} 
+                            getContactId={remContactHandler}/>
+                        )}
+                    />
+                    <Route 
+                        path="/add" 
+                        /*component={() => (<AddContact addContactHandler={addContactHandler}*/ 
+                        render={(props) => (
+                            <AddContact {...props} 
+                            addContactHandler={addContactHandler}/>
+                        )}
+                    />
+                    <Route 
+                        path="/contact/:id" 
+                        component={ContactData}
+                        // render={(props) => (
+                        //     <AddContact {...props} 
+                        //     addContactHandler={addContactHandler}/>
+                        // )}
+                    />                    
                 </Switch>
                 {/* <AddContact addContactHandler={addContactHandler}/>
                 <ContactList contacts={contacts} getContactId={remContactHandler}/> */}
